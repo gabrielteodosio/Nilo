@@ -1,8 +1,10 @@
 import Head from "next/head";
 
-import { SignOutButton } from "@clerk/nextjs";
+import { SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
 
 export default function Home() {
+  const user = useUser();
+
   return (
     <>
       <Head>
@@ -11,7 +13,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center bg-slate-600">
-        <SignOutButton />
+        {user.isSignedIn ? <SignOutButton />: <SignInButton />}
       </main>
     </>
   );
