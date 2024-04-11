@@ -1,6 +1,8 @@
 import { type AppType } from "next/app";
 import { Inter } from "next/font/google";
+import { ClerkProvider } from "@clerk/nextjs";
 
+import { ptBR } from "@clerk/localizations";
 import { api } from "@/utils/api";
 
 import "@/styles/globals.css";
@@ -9,11 +11,14 @@ const inter = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
 });
+
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
-    <main className={`font-sans ${inter.variable}`}>
-      <Component {...pageProps} />
-    </main>
+    <ClerkProvider localization={ptBR} {...pageProps}>
+      <main className={`font-sans ${inter.variable}`}>
+        <Component {...pageProps} />
+      </main>
+    </ClerkProvider>
   );
 };
 
