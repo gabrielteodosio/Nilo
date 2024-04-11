@@ -10,4 +10,7 @@ export const taskRouter = createTRPCRouter({
         greeting: `Hi task: ${input.text}`,
       };
     }),
+  getAll: publicProcedure.query(({ ctx }) => {
+    return ctx.db.task.findMany();
+  }),
 });

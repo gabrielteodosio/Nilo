@@ -1,9 +1,16 @@
-import Head from "next/head";
+import { type NextPage } from "next";
 
+import Head from "next/head";
 import { SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
 
-export default function Home() {
+import { api } from "@/utils/api";
+
+const Home: NextPage = () => {
+  const dataset = api.task.getAll.useQuery();
+
   const user = useUser();
+
+  console.log({ data: dataset.data });
 
   return (
     <>
@@ -13,8 +20,10 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center bg-slate-600">
-        {user.isSignedIn ? <SignOutButton />: <SignInButton />}
+        {user.isSignedIn ? <SignOutButton /> : <SignInButton />}
       </main>
     </>
   );
-}
+};
+
+export default Home;
