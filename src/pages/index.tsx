@@ -3,14 +3,8 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import { SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
 
-import { api } from "@/utils/api";
-
 const Home: NextPage = () => {
-  const dataset = api.task.getAll.useQuery();
-
   const user = useUser();
-
-  console.log({ data: dataset.data });
 
   return (
     <>
